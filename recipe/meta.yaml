@@ -16,7 +16,7 @@ source:
     - patches/0002-Don-t-link-against-Python-library-in-Python-module.patch
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: tracy-client
