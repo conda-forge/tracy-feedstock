@@ -17,7 +17,7 @@ source:
     - patches/0002-Don-t-link-against-Python-library-in-Python-module.patch
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: {{ pkg_name }}-client
