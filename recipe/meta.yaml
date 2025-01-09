@@ -21,7 +21,7 @@ source:
     - patches/0004-Add-install-rule.patch
 
 build:
-  number: 3
+  number: 4
 
 outputs:
   - name: {{ pkg_name }}-client
