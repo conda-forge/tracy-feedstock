@@ -40,8 +40,8 @@ outputs:
       run:
     test:
       commands:
-        - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}               # [not win]
-        - if not exist %PREFIX%\\Library\\bin\\TracyClient.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}            # [not win]
+        - if not exist %PREFIX%\Library\bin\TracyClient.dll exit 1  # [win]
   - name: {{ pkg_name }}-gui
     script: build_tracy_gui.sh   # [not win]
     script: build_tracy_gui.bat  # [win]
@@ -66,8 +66,8 @@ outputs:
       run:
     test:
       commands:
-        - test -f $PREFIX/bin/tracy-profiler                   # [not win]
-        - if not exist %PREFIX%\bin\tracy-profiler.exe exit 1  # [win]
+        - test -f $PREFIX/bin/tracy-profiler                           # [not win]
+        - if not exist %PREFIX%\Library\bin\tracy-profiler.exe exit 1  # [win]
   - name: {{ pkg_name }}-client-python
     script: build_tracy_client_python.sh   # [not win]
     script: build_tracy_client_python.bat  # [win]
@@ -103,7 +103,7 @@ outputs:
     test:
       commands:
         - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}                     # [not win]
-        - if not exist %PREFIX%\\Library\\bin\\TracyClient.dll exit 1        # [win]
+        - if not exist %PREFIX%\Library\bin\TracyClient.dll exit 1           # [win]
         - TRACY_NO_INVARIANT_CHECK=1 python -c "import tracy_client"         # [not_win]
         - set TRACY_NO_INVARIANT_CHECK=1 && python -c "import tracy_client"  # [win]
 
