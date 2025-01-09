@@ -1,11 +1,11 @@
-About tracy-feedstock
-=====================
+About tracy-profiler-feedstock
+==============================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tracy-feedstock/blob/main/LICENSE.txt)
 
 
-About tracy
------------
+About tracy-profiler
+--------------------
 
 Home: https://github.com/wolfpld/tracy
 
@@ -17,8 +17,8 @@ sampling profiler for games and other applications.
 
 Development: https://github.com/wolfpld/tracy
 
-About tracy-client
-------------------
+About tracy-profiler-client
+---------------------------
 
 Home: https://github.com/wolfpld/tracy
 
@@ -30,8 +30,8 @@ sampling profiler for games and other applications.
 
 Development: https://github.com/wolfpld/tracy
 
-About tracy-client-python
--------------------------
+About tracy-profiler-client-python
+----------------------------------
 
 Home: https://github.com/wolfpld/tracy
 
@@ -43,8 +43,8 @@ sampling profiler for games and other applications.
 
 Development: https://github.com/wolfpld/tracy
 
-About tracy
------------
+About tracy-profiler
+--------------------
 
 Home: https://github.com/wolfpld/tracy
 
@@ -81,10 +81,31 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>linux_aarch64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23405&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tracy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23405&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tracy-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23405&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tracy-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23405&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tracy-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
@@ -107,55 +128,55 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-tracy-green.svg)](https://anaconda.org/conda-forge/tracy) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy.svg)](https://anaconda.org/conda-forge/tracy) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy.svg)](https://anaconda.org/conda-forge/tracy) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy.svg)](https://anaconda.org/conda-forge/tracy) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--client-green.svg)](https://anaconda.org/conda-forge/tracy-client) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-client.svg)](https://anaconda.org/conda-forge/tracy-client) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-client.svg)](https://anaconda.org/conda-forge/tracy-client) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-client.svg)](https://anaconda.org/conda-forge/tracy-client) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--client--python-green.svg)](https://anaconda.org/conda-forge/tracy-client-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-client-python.svg)](https://anaconda.org/conda-forge/tracy-client-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-client-python.svg)](https://anaconda.org/conda-forge/tracy-client-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-client-python.svg)](https://anaconda.org/conda-forge/tracy-client-python) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler-green.svg)](https://anaconda.org/conda-forge/tracy-profiler) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler.svg)](https://anaconda.org/conda-forge/tracy-profiler) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler.svg)](https://anaconda.org/conda-forge/tracy-profiler) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler.svg)](https://anaconda.org/conda-forge/tracy-profiler) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--client-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-client.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-client.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-client.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--client--python-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-client-python.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-client-python.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-client-python.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) |
 
-Installing tracy
-================
+Installing tracy-profiler
+=========================
 
-Installing `tracy` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `tracy-profiler` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `tracy, tracy-client, tracy-client-python` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `tracy-profiler, tracy-profiler-client, tracy-profiler-client-python` can be installed with `conda`:
 
 ```
-conda install tracy tracy-client tracy-client-python
-```
-
-or with `mamba`:
-
-```
-mamba install tracy tracy-client tracy-client-python
-```
-
-It is possible to list all of the versions of `tracy` available on your platform with `conda`:
-
-```
-conda search tracy --channel conda-forge
+conda install tracy-profiler tracy-profiler-client tracy-profiler-client-python
 ```
 
 or with `mamba`:
 
 ```
-mamba search tracy --channel conda-forge
+mamba install tracy-profiler tracy-profiler-client tracy-profiler-client-python
+```
+
+It is possible to list all of the versions of `tracy-profiler` available on your platform with `conda`:
+
+```
+conda search tracy-profiler --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search tracy-profiler --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search tracy --channel conda-forge
+mamba repoquery search tracy-profiler --channel conda-forge
 
-# List packages depending on `tracy`:
-mamba repoquery whoneeds tracy --channel conda-forge
+# List packages depending on `tracy-profiler`:
+mamba repoquery whoneeds tracy-profiler --channel conda-forge
 
-# List dependencies of `tracy`:
-mamba repoquery depends tracy --channel conda-forge
+# List dependencies of `tracy-profiler`:
+mamba repoquery depends tracy-profiler --channel conda-forge
 ```
 
 
@@ -200,17 +221,17 @@ Terminology
                   produce the finished article (built conda distributions)
 
 
-Updating tracy-feedstock
-========================
+Updating tracy-profiler-feedstock
+=================================
 
-If you would like to improve the tracy recipe or build a new
+If you would like to improve the tracy-profiler recipe or build a new
 package version, please fork this repository and submit a PR. Upon submission,
 your changes will be run on the appropriate platforms to give the reviewer an
 opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `conda-forge` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `conda-forge` channel.
-Note that all branches in the conda-forge/tracy-feedstock are
+Note that all branches in the conda-forge/tracy-profiler-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.
