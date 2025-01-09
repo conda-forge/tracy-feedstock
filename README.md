@@ -30,6 +30,19 @@ sampling profiler for games and other applications.
 
 Development: https://github.com/wolfpld/tracy
 
+About tracy-profiler-gui
+------------------------
+
+Home: https://github.com/wolfpld/tracy
+
+Package license: [BSD-3-Clause](https://github.com/wolfpld/tracy/blob/master/LICENSE)
+
+Summary: A real time, nanosecond resolution, remote telemetry, hybrid frame and
+sampling profiler for games and other applications.
+
+
+Development: https://github.com/wolfpld/tracy
+
 About tracy-profiler-client-python
 ----------------------------------
 
@@ -131,6 +144,7 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler-green.svg)](https://anaconda.org/conda-forge/tracy-profiler) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler.svg)](https://anaconda.org/conda-forge/tracy-profiler) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler.svg)](https://anaconda.org/conda-forge/tracy-profiler) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler.svg)](https://anaconda.org/conda-forge/tracy-profiler) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--client-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-client.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-client.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-client.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--client--python-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-client-python.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-client-python.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-client-python.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--gui-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-gui) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-gui.svg)](https://anaconda.org/conda-forge/tracy-profiler-gui) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-gui.svg)](https://anaconda.org/conda-forge/tracy-profiler-gui) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-gui.svg)](https://anaconda.org/conda-forge/tracy-profiler-gui) |
 
 Installing tracy-profiler
 =========================
@@ -142,16 +156,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `tracy-profiler, tracy-profiler-client, tracy-profiler-client-python` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `tracy-profiler, tracy-profiler-client, tracy-profiler-client-python, tracy-profiler-gui` can be installed with `conda`:
 
 ```
-conda install tracy-profiler tracy-profiler-client tracy-profiler-client-python
+conda install tracy-profiler tracy-profiler-client tracy-profiler-client-python tracy-profiler-gui
 ```
 
 or with `mamba`:
 
 ```
-mamba install tracy-profiler tracy-profiler-client tracy-profiler-client-python
+mamba install tracy-profiler tracy-profiler-client tracy-profiler-client-python tracy-profiler-gui
 ```
 
 It is possible to list all of the versions of `tracy-profiler` available on your platform with `conda`:

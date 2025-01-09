@@ -15,9 +15,13 @@ source:
     - patches/0001-Install-bindings-on-Windows-and-allow-__init__.py-to.patch
     # Avoid linking issue on MacOS
     - patches/0002-Don-t-link-against-Python-library-in-Python-module.patch
+    # Avoid linking issues on Linux with conda packages
+    - patches/0003-Avoid-linking-issues-when-linking-against-conda-pack.patch
+    # Add instal rule
+    - patches/0004-Add-install-rule.patch
 
 build:
-  number: 3
+  number: 4
 
 outputs:
   - name: {{ pkg_name }}-client
@@ -36,8 +40,34 @@ outputs:
       run:
     test:
       commands:
-        - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}               # [not win]
-        - if not exist %PREFIX%\\Library\\bin\\TracyClient.dll exit 1  # [win]
+        - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}            # [not win]
+        - if not exist %PREFIX%\Library\bin\TracyClient.dll exit 1  # [win]
+  - name: {{ pkg_name }}-gui
+    script: build_tracy_gui.sh   # [not win]
+    script: build_tracy_gui.bat  # [win]
+    build:
+      skip: true  # [ppc64le or aarch64]
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - pkg-config
+        - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
+      host:
+        - freetype
+        # CMake doesn't find freetype without zlib
+        - zlib
+        - glfw
+        - dbus          # [linux]
+        - libegl-devel  # [linux]
+        - libcapstone   # [linux or osx]
+        - tbb-devel
+      run:
+    test:
+      commands:
+        - test -f $PREFIX/bin/tracy-profiler                           # [not win]
+        - if not exist %PREFIX%\Library\bin\tracy-profiler.exe exit 1  # [win]
   - name: {{ pkg_name }}-client-python
     script: build_tracy_client_python.sh   # [not win]
     script: build_tracy_client_python.bat  # [win]
@@ -73,7 +103,7 @@ outputs:
     test:
       commands:
         - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}                     # [not win]
-        - if not exist %PREFIX%\\Library\\bin\\TracyClient.dll exit 1        # [win]
+        - if not exist %PREFIX%\Library\bin\TracyClient.dll exit 1           # [win]
         - TRACY_NO_INVARIANT_CHECK=1 python -c "import tracy_client"         # [not_win]
         - set TRACY_NO_INVARIANT_CHECK=1 && python -c "import tracy_client"  # [win]
 
