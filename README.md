@@ -3,62 +3,6 @@ About tracy-profiler-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tracy-feedstock/blob/main/LICENSE.txt)
 
-
-About tracy-profiler
---------------------
-
-Home: https://github.com/wolfpld/tracy
-
-Package license: [BSD-3-Clause](https://github.com/wolfpld/tracy/blob/master/LICENSE)
-
-Summary: A real time, nanosecond resolution, remote telemetry, hybrid frame and 
-sampling profiler for games and other applications.
-
-
-Development: https://github.com/wolfpld/tracy
-
-About tracy-profiler-client
----------------------------
-
-Home: https://github.com/wolfpld/tracy
-
-Package license: [BSD-3-Clause](https://github.com/wolfpld/tracy/blob/master/LICENSE)
-
-Summary: A real time, nanosecond resolution, remote telemetry, hybrid frame and
-sampling profiler for games and other applications.
-
-
-Development: https://github.com/wolfpld/tracy
-
-About tracy-profiler-gui
-------------------------
-
-Home: https://github.com/wolfpld/tracy
-
-Package license: [BSD-3-Clause](https://github.com/wolfpld/tracy/blob/master/LICENSE)
-
-Summary: A real time, nanosecond resolution, remote telemetry, hybrid frame and
-sampling profiler for games and other applications.
-
-
-Development: https://github.com/wolfpld/tracy
-
-About tracy-profiler-client-python
-----------------------------------
-
-Home: https://github.com/wolfpld/tracy
-
-Package license: [BSD-3-Clause](https://github.com/wolfpld/tracy/blob/master/LICENSE)
-
-Summary: A real time, nanosecond resolution, remote telemetry, hybrid frame and
-sampling profiler for games and other applications.
-
-
-Development: https://github.com/wolfpld/tracy
-
-About tracy-profiler
---------------------
-
 Home: https://github.com/wolfpld/tracy
 
 Package license: [BSD-3-Clause](https://github.com/wolfpld/tracy/blob/master/LICENSE)
