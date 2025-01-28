@@ -1,0 +1,27 @@
+From 57503495a4018d8e7bf370cc6320f79ff337f321 Mon Sep 17 00:00:00 2001
+From: Jeongseok Lee <jeongseok@meta.com>
+Date: Tue, 28 Jan 2025 13:09:50 -0800
+Subject: [PATCH] Add -DTRACY_FIBERS=ON to TracyClient target when TRACY_FIBERS
+ is enabled
+
+---
+ CMakeLists.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 72901a8c..8c99d3a7 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -36,6 +36,9 @@ target_link_libraries(
+         Threads::Threads
+         ${CMAKE_DL_LIBS}
+ )
++if(TRACY_FIBERS)
++    target_compile_definitions(TracyClient PUBLIC -DTRACY_FIBERS=ON)
++endif()
+ 
+ # Public dependency on some libraries required when using Mingw
+ if(WIN32 AND ${CMAKE_CXX_COMPILER_ID} MATCHES "GNU|Clang")
+-- 
+2.20.1.windows.1
+

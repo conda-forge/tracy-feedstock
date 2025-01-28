@@ -19,6 +19,8 @@ source:
     - patches/0003-Avoid-linking-issues-when-linking-against-conda-pack.patch
     # Add instal rule
     - patches/0004-Add-install-rule.patch
+    # Add TRACY_FIBERS definition when it's enabled
+    - patches/0005-Add-DTRACY_FIBERS-ON-to-TracyClient-target-when-TRAC.patch
 
 build:
   number: 5
