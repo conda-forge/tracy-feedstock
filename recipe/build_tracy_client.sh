@@ -7,7 +7,8 @@ mkdir build && cd build
 cmake ${CMAKE_ARGS} .. \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=ON \
-    -GNinja
+    -GNinja \
+    -DTRACY_FIBERS=ON
 
 # build
 cmake --build . --parallel ${CPU_COUNT}

@@ -21,7 +21,7 @@ source:
     - patches/0004-Add-install-rule.patch
 
 build:
-  number: 4
+  number: 5
 
 outputs:
   - name: {{ pkg_name }}-client
@@ -110,7 +110,7 @@ outputs:
 about:
   home: https://github.com/wolfpld/tracy
   summary: |
-    A real time, nanosecond resolution, remote telemetry, hybrid frame and 
+    A real time, nanosecond resolution, remote telemetry, hybrid frame and
     sampling profiler for games and other applications.
   license: BSD-3-Clause
   license_family: BSD

@@ -8,7 +8,8 @@ cmake .. ^
     -DBUILD_SHARED_LIBS=ON ^
     -GNinja ^
     -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
-    -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%"
+    -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
+    -DTRACY_FIBERS=ON
 
 :: build
 cmake --build . --parallel %CPU_COUNT%
