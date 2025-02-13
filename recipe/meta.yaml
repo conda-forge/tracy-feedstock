@@ -95,6 +95,9 @@ outputs:
         - set TRACY_NO_INVARIANT_CHECK=1 && python -c "import tracy_client"  # [win]
   - name: {{ pkg_name }}
     requirements:
+      host:
+        # Explicitely add a python requirement to change hash between python version
+        - python
       run:
         - {{ pin_subpackage(pkg_name ~ '-client', exact=true) }}
         - {{ pin_subpackage(pkg_name ~ '-client-python', exact=true) }}
