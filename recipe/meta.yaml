@@ -94,12 +94,10 @@ outputs:
         - TRACY_NO_INVARIANT_CHECK=1 python -c "import tracy_client"         # [not_win]
         - set TRACY_NO_INVARIANT_CHECK=1 && python -c "import tracy_client"  # [win]
   - name: {{ pkg_name }}
-    build:
-      noarch: generic
     requirements:
       run:
-        - {{ pin_subpackage(pkg_name ~ '-client', max_pin="x.x.x") }}
-        - {{ pin_subpackage(pkg_name ~ '-client-python', max_pin="x.x.x") }}
+        - {{ pin_subpackage(pkg_name ~ '-client', exact=true) }}
+        - {{ pin_subpackage(pkg_name ~ '-client-python', exact=true) }}
     test:
       commands:
         - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}                     # [not win]
