@@ -17,8 +17,8 @@ sampling profiler for games and other applications.
 
 Development: https://github.com/wolfpld/tracy
 
-About tracy-profiler-client
----------------------------
+About tracy-profiler
+--------------------
 
 Home: https://github.com/wolfpld/tracy
 
@@ -30,8 +30,8 @@ sampling profiler for games and other applications.
 
 Development: https://github.com/wolfpld/tracy
 
-About tracy-profiler-gui
-------------------------
+About tracy-profiler-client
+---------------------------
 
 Home: https://github.com/wolfpld/tracy
 
@@ -56,8 +56,8 @@ sampling profiler for games and other applications.
 
 Development: https://github.com/wolfpld/tracy
 
-About tracy-profiler
---------------------
+About tracy-profiler-gui
+------------------------
 
 Home: https://github.com/wolfpld/tracy
 
