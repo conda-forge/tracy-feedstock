@@ -1,6 +1,6 @@
 {% set name = "tracy" %}
 {% set pkg_name = "tracy-profiler" %}
-{% set version = "0.11.1" %}
+{% set version = "0.12.0" %}
 
 
 package:
@@ -9,19 +9,15 @@ package:
 
 source:
   url: https://github.com/wolfpld/{{ name }}/archive/refs/tags/v{{ version }}.zip
-  sha256: 2213f8c39ccbda555ec646a6bfa77daabce5837733770937578c06ad20e747cd
+  sha256: 4d844ef548ac2baabe61c9105da1e76df79aa8ac58ae4702102cc4dcd4d235e9
   patches:
     # Avoid installation issue on Windows.
     - patches/0001-Install-bindings-on-Windows-and-allow-__init__.py-to.patch
     # Avoid linking issue on MacOS
     - patches/0002-Don-t-link-against-Python-library-in-Python-module.patch
-    # Avoid linking issues on Linux with conda packages
-    - patches/0003-Avoid-linking-issues-when-linking-against-conda-pack.patch
-    # Add instal rule
-    - patches/0004-Add-install-rule.patch
 
 build:
-  number: 5
+  number: 0
 
 outputs:
   - name: {{ pkg_name }}-client
@@ -111,7 +107,7 @@ outputs:
 about:
   home: https://github.com/wolfpld/tracy
   summary: |
-    A real time, nanosecond resolution, remote telemetry, hybrid frame and 
+    A real time, nanosecond resolution, remote telemetry, hybrid frame and
     sampling profiler for games and other applications.
   license: BSD-3-Clause
   license_family: BSD
