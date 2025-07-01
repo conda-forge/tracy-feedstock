@@ -1,11 +1,11 @@
 c_stdlib:
 - vs
 channel_sources:
-- conda-forge
+- conda-forge/label/capstone_dev,conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2019
+- vs2022
 freetype:
 - '2'
 pin_run_as_build:
