@@ -1,26 +1,25 @@
-From e936ca6cc5aa42df2ba931b1c235d6e22b9e2e0e Mon Sep 17 00:00:00 2001
+From 4a79c77124112de7fd4a4525494031c6955dc2f4 Mon Sep 17 00:00:00 2001
 From: Joris Vaillant <joris.vaillant@inria.fr>
-Date: Thu, 9 Jan 2025 15:56:55 +0100
+Date: Tue, 1 Jul 2025 16:39:02 +0200
 Subject: [PATCH] Avoid linking issues when linking against conda package
 
 ---
- profiler/CMakeLists.txt | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ profiler/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/profiler/CMakeLists.txt b/profiler/CMakeLists.txt
-index 928aec3f..f9a776c6 100644
+index 9d026b83..0e073b9e 100644
 --- a/profiler/CMakeLists.txt
 +++ b/profiler/CMakeLists.txt
-@@ -171,7 +171,8 @@ else()
-     add_executable(${PROJECT_NAME} ${PROFILER_FILES} ${COMMON_FILES} ${SERVER_FILES})
+@@ -184,7 +184,7 @@ else()
  endif()
  
--target_link_libraries(${PROJECT_NAME} PRIVATE TracyServer TracyImGui)
-+find_package(Threads REQUIRED)
+ find_package(Threads REQUIRED)
+-target_link_libraries(${PROJECT_NAME} PRIVATE TracyServer TracyImGui Threads::Threads)
 +target_link_libraries(${PROJECT_NAME} PRIVATE TracyServer TracyImGui ${CMAKE_DL_LIBS} Threads::Threads)
  
- if(NOT EMSCRIPTEN)
-     target_link_libraries(${PROJECT_NAME} PRIVATE TracyNfd)
+ if(NOT DEFINED GIT_REV)
+     set(GIT_REV "HEAD")
 -- 
-2.34.1
+2.49.0
 

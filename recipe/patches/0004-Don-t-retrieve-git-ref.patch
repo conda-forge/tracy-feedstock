@@ -1,0 +1,52 @@
+From 62eda55032031a7b70f7d67d0e0d793ea7978989 Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Wed, 2 Jul 2025 10:27:03 +0200
+Subject: [PATCH] Don't retrieve git ref
+
+Since the project are build from a source archive and not a git
+repository this step can't work
+---
+ profiler/CMakeLists.txt | 27 ++++++++-------------------
+ 1 file changed, 8 insertions(+), 19 deletions(-)
+
+diff --git a/profiler/CMakeLists.txt b/profiler/CMakeLists.txt
+index 9d026b83..534b2aa3 100644
+--- a/profiler/CMakeLists.txt
++++ b/profiler/CMakeLists.txt
+@@ -190,25 +190,14 @@ if(NOT DEFINED GIT_REV)
+     set(GIT_REV "HEAD")
+ endif()
+ 
+-find_package(Git)
+-if(Git_FOUND)
+-    add_custom_target(git-ref
+-        COMMAND ${GIT_EXECUTABLE} log -1 "--format=#pragma once %nnamespace tracy { static inline const char* GitRef = %x22%h%x22; }" ${GIT_REV} > GitRef.hpp.tmp
+-        COMMAND ${CMAKE_COMMAND} -E copy_if_different GitRef.hpp.tmp GitRef.hpp
+-        BYPRODUCTS GitRef.hpp GitRef.hpp.tmp
+-        VERBATIM
+-    )
+-    add_dependencies(${PROJECT_NAME} git-ref)
+-else()
+-    message(WARNING "git not found, using 'unknown' as git ref.")
+-    add_custom_command(
+-        OUTPUT GitRef.hpp
+-        COMMAND ${CMAKE_COMMAND} -E echo "#pragma once" > GitRef.hpp
+-        COMMAND ${CMAKE_COMMAND} -E echo "namespace tracy { static inline const char* GitRef = \"unknown\"; }" >> GitRef.hpp
+-        VERBATIM
+-    )
+-    target_sources(${PROJECT_NAME} PUBLIC GitRef.hpp)
+-endif()
++message(WARNING "git not found, using 'unknown' as git ref.")
++add_custom_command(
++    OUTPUT GitRef.hpp
++    COMMAND ${CMAKE_COMMAND} -E echo "#pragma once" > GitRef.hpp
++    COMMAND ${CMAKE_COMMAND} -E echo "namespace tracy { static inline const char* GitRef = \"unknown\"; }" >> GitRef.hpp
++    VERBATIM
++)
++target_sources(${PROJECT_NAME} PUBLIC GitRef.hpp)
+ 
+ if(NOT EMSCRIPTEN)
+     if(NOT NO_FILESELECTOR)
+-- 
+2.49.0
+
