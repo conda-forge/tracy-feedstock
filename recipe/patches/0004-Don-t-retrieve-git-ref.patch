@@ -1,52 +1,25 @@
-From 62eda55032031a7b70f7d67d0e0d793ea7978989 Mon Sep 17 00:00:00 2001
+From ad3dc2c53f7274eca6d90b9e397d465fa6eda6b3 Mon Sep 17 00:00:00 2001
 From: Joris Vaillant <joris.vaillant@inria.fr>
-Date: Wed, 2 Jul 2025 10:27:03 +0200
+Date: Wed, 2 Jul 2025 14:49:00 +0200
 Subject: [PATCH] Don't retrieve git ref
 
-Since the project are build from a source archive and not a git
-repository this step can't work
 ---
- profiler/CMakeLists.txt | 27 ++++++++-------------------
- 1 file changed, 8 insertions(+), 19 deletions(-)
+ profiler/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/profiler/CMakeLists.txt b/profiler/CMakeLists.txt
-index 9d026b83..534b2aa3 100644
+index bd7ddc09..c186308f 100644
 --- a/profiler/CMakeLists.txt
 +++ b/profiler/CMakeLists.txt
-@@ -190,25 +190,14 @@ if(NOT DEFINED GIT_REV)
-     set(GIT_REV "HEAD")
+@@ -191,7 +191,7 @@ if(NOT DEFINED GIT_REV)
  endif()
  
--find_package(Git)
+ find_package(Git)
 -if(Git_FOUND)
--    add_custom_target(git-ref
--        COMMAND ${GIT_EXECUTABLE} -C ${CMAKE_CURRENT_SOURCE_DIR} log -1 "--format=#pragma once %nnamespace tracy { static inline const char* GitRef = %x22%h%x22; }" ${GIT_REV} > GitRef.hpp.tmp
--        COMMAND ${CMAKE_COMMAND} -E copy_if_different GitRef.hpp.tmp GitRef.hpp
--        BYPRODUCTS GitRef.hpp GitRef.hpp.tmp
--        VERBATIM
--    )
--    add_dependencies(${PROJECT_NAME} git-ref)
--else()
--    message(WARNING "git not found, using 'unknown' as git ref.")
--    add_custom_command(
--        OUTPUT GitRef.hpp
--        COMMAND ${CMAKE_COMMAND} -E echo "#pragma once" > GitRef.hpp
--        COMMAND ${CMAKE_COMMAND} -E echo "namespace tracy { static inline const char* GitRef = \"unknown\"; }" >> GitRef.hpp
--        VERBATIM
--    )
--    target_sources(${PROJECT_NAME} PUBLIC GitRef.hpp)
--endif()
-+message(WARNING "git not found, using 'unknown' as git ref.")
-+add_custom_command(
-+    OUTPUT GitRef.hpp
-+    COMMAND ${CMAKE_COMMAND} -E echo "#pragma once" > GitRef.hpp
-+    COMMAND ${CMAKE_COMMAND} -E echo "namespace tracy { static inline const char* GitRef = \"unknown\"; }" >> GitRef.hpp
-+    VERBATIM
-+)
-+target_sources(${PROJECT_NAME} PUBLIC GitRef.hpp)
- 
- if(NOT EMSCRIPTEN)
-     if(NOT NO_FILESELECTOR)
++if(FALSE)
+     add_custom_target(git-ref
+         COMMAND ${GIT_EXECUTABLE} -C ${CMAKE_CURRENT_SOURCE_DIR} log -1 "--format=#pragma once %nnamespace tracy { static inline const char* GitRef = %x22%h%x22; }" ${GIT_REV} > GitRef.hpp.tmp
+         COMMAND ${CMAKE_COMMAND} -E copy_if_different GitRef.hpp.tmp GitRef.hpp
 -- 
 2.49.0
 
