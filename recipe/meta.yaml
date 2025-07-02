@@ -1,6 +1,6 @@
 {% set name = "tracy" %}
 {% set pkg_name = "tracy-profiler" %}
-{% set version = "0.12.1" %}
+{% set version = "0.12.2" %}
 
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/wolfpld/{{ name }}/archive/refs/tags/v{{ version }}.zip
-  sha256: c38b73cbe767032483db4af433e825e04fd1e3e69afdd52906b7d24a6418fc40
+  sha256: 226120487c293ef6911111fb2a78d60cb0dd6c3abddff5c14da053864c6b96c8
   patches:
     # Avoid installation issue on Windows.
     - patches/0001-Install-bindings-on-Windows-and-allow-__init__.py-to.patch
