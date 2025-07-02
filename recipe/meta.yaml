@@ -17,6 +17,8 @@ source:
     - patches/0002-Don-t-link-against-Python-library-in-Python-module.patch
     # Avoid linking issues on Linux with conda packages
     - patches/0003-Avoid-linking-issues-when-linking-against-conda-pack.patch
+    # Don't retrieve git ref
+    - patches/0004-Don-t-retrieve-git-ref.patch
 
 build:
   number: 0
