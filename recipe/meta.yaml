@@ -1,6 +1,6 @@
 {% set name = "tracy" %}
 {% set pkg_name = "tracy-profiler" %}
-{% set version = "0.12.2" %}
+{% set version = "0.13.0" %}
 
 
 package:
@@ -9,7 +9,7 @@ package:
 
 source:
   url: https://github.com/wolfpld/{{ name }}/archive/refs/tags/v{{ version }}.zip
-  sha256: 226120487c293ef6911111fb2a78d60cb0dd6c3abddff5c14da053864c6b96c8
+  sha256: bc5b8562c3dbac664d394f163695ce6bf9071d1f7bf436500f3e087f33e01ead
   patches:
     # Avoid installation issue on Windows.
     - patches/0001-Install-bindings-on-Windows-and-allow-__init__.py-to.patch
@@ -21,14 +21,14 @@ source:
     - patches/0004-Don-t-retrieve-git-ref.patch
 
 build:
-  number: 1
+  number: 0
 
 outputs:
   - name: {{ pkg_name }}-client
     build:
       run_exports:
         - {{ pin_subpackage(pkg_name ~ '-client', max_pin='x.x.x') }}
-    script: build_tracy_client.sh   # [not win]
+    script: build_tracy_client.sh  # [not win]
     script: build_tracy_client.bat  # [win]
     requirements:
       build:
@@ -43,7 +43,7 @@ outputs:
         - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}            # [not win]
         - if not exist %PREFIX%\Library\bin\TracyClient.dll exit 1  # [win]
   - name: {{ pkg_name }}-gui
-    script: build_tracy_gui.sh   # [not win]
+    script: build_tracy_gui.sh  # [not win]
     script: build_tracy_gui.bat  # [win]
     build:
       skip: true  # [ppc64le or aarch64]
@@ -69,7 +69,7 @@ outputs:
         - test -f $PREFIX/bin/tracy-profiler                           # [not win]
         - if not exist %PREFIX%\Library\bin\tracy-profiler.exe exit 1  # [win]
   - name: {{ pkg_name }}-client-python
-    script: build_tracy_client_python.sh   # [not win]
+    script: build_tracy_client_python.sh  # [not win]
     script: build_tracy_client_python.bat  # [win]
     requirements:
       build:
