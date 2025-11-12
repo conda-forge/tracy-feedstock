@@ -8,6 +8,8 @@ cxx_compiler:
 - vs2022
 freetype:
 - '2'
+libcurl:
+- '8'
 pin_run_as_build:
   python:
     min_pin: x.x
