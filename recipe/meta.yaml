@@ -17,6 +17,9 @@ source:
     - patches/0002-Avoid-linking-issues-when-linking-against-conda-pack.patch
     # Don't retrieve git ref
     - patches/0003-Don-t-retrieve-git-ref.patch
+    # Avoid to use pkg-config as most as possible
+    # Some .pc file are not available on Windows
+    - patches/0004-Use-find_package-instead-of-package-config-to-.patch
 
 build:
   number: 0
