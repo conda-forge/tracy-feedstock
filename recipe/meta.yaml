@@ -52,6 +52,8 @@ outputs:
         - pkg-config
         - {{ compiler('cxx') }}
         - {{ stdlib("c") }}
+        # clang-scan-dep is needed to build cxx 20 module from plugixml
+        - clang-tools  # [osx]
       host:
         - freetype
         # CMake doesn't find freetype without zlib
