@@ -1,0 +1,25 @@
+From 7b97ff63bb04d99cfb0fbc29f296fd03b8f6bd7a Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Wed, 12 Nov 2025 15:36:33 +0100
+Subject: [PATCH 2/2] [PATCH] Don't retrieve git ref
+
+---
+ profiler/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/profiler/CMakeLists.txt b/profiler/CMakeLists.txt
+index af204e1a..19e7261e 100644
+--- a/profiler/CMakeLists.txt
++++ b/profiler/CMakeLists.txt
+@@ -267,7 +267,7 @@ if(NOT DEFINED GIT_REV)
+ endif()
+ 
+ find_package(Git)
+-if(Git_FOUND)
++if(FALSE)
+     add_custom_target(git-ref
+         COMMAND ${CMAKE_COMMAND} -E echo "#pragma once" > GitRef.hpp.tmp
+         COMMAND ${GIT_EXECUTABLE} -C ${CMAKE_CURRENT_SOURCE_DIR} log -1 "--format=namespace tracy { static inline const char* GitRef = %x22%h%x22; }" ${GIT_REV} >> GitRef.hpp.tmp || echo "namespace tracy { static inline const char* GitRef = \"unknown\"; }" >> GitRef.hpp.tmp
+-- 
+2.51.0
+
