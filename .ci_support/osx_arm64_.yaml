@@ -8,10 +8,6 @@ c_stdlib_version:
 - '11.0'
 channel_sources:
 - conda-forge/label/capstone_dev,conda-forge
-- conda-forge/label/capstone_dev,conda-forge
-- conda-forge/label/capstone_dev,conda-forge
-- conda-forge/label/capstone_dev,conda-forge
-- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -35,9 +31,6 @@ python:
 target_platform:
 - osx-arm64
 tbb_devel:
-- '2021'
-zip_keys:
-- - python
-  - channel_sources
+- '2022'
 zlib:
 - '1'
