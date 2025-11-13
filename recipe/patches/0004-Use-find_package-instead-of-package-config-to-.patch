@@ -1,0 +1,61 @@
+From 7d67776f79558b7d827619d4d62bd25861feba1d Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Thu, 13 Nov 2025 16:11:47 +0100
+Subject: [PATCH] Use find_package instead of package config to avoid
+ issue on Windows
+
+---
+ cmake/vendor.cmake | 22 ++++++++--------------
+ 1 file changed, 8 insertions(+), 14 deletions(-)
+
+diff --git a/cmake/vendor.cmake b/cmake/vendor.cmake
+index a54f7c53..82543194 100644
+--- a/cmake/vendor.cmake
++++ b/cmake/vendor.cmake
+@@ -60,11 +60,9 @@ endif()
+ # GLFW
+ 
+ if(NOT USE_WAYLAND AND NOT EMSCRIPTEN)
+-    pkg_check_modules(GLFW glfw3)
+-    if (GLFW_FOUND AND NOT DOWNLOAD_GLFW)
+-        add_library(TracyGlfw3 INTERFACE)
+-        target_include_directories(TracyGlfw3 INTERFACE ${GLFW_INCLUDE_DIRS})
+-        target_link_libraries(TracyGlfw3 INTERFACE ${GLFW_LINK_LIBRARIES})
++    find_package(glfw3 REQUIRED)
++    if (glfw3_FOUND AND NOT DOWNLOAD_GLFW)
++        add_library(TracyGlfw3 ALIAS glfw)
+     else()
+         CPMAddPackage(
+             NAME glfw
+@@ -84,11 +82,9 @@ endif()
+ 
+ # freetype
+ 
+-pkg_check_modules(FREETYPE freetype2)
++find_package(Freetype REQUIRED)
+ if (FREETYPE_FOUND AND NOT DOWNLOAD_FREETYPE)
+-    add_library(TracyFreetype INTERFACE)
+-    target_include_directories(TracyFreetype INTERFACE ${FREETYPE_INCLUDE_DIRS})
+-    target_link_libraries(TracyFreetype INTERFACE ${FREETYPE_LINK_LIBRARIES})
++    add_library(TracyFreetype ALIAS Freetype::Freetype)
+ else()
+     CPMAddPackage(
+         NAME freetype
+@@ -270,11 +266,9 @@ if(NOT EMSCRIPTEN)
+ 
+     # libcurl
+ 
+-    pkg_check_modules(LIBCURL libcurl)
+-    if (LIBCURL_FOUND AND NOT DOWNLOAD_LIBCURL)
+-        add_library(TracyLibcurl INTERFACE)
+-        target_include_directories(TracyLibcurl INTERFACE ${LIBCURL_INCLUDE_DIRS})
+-        target_link_libraries(TracyLibcurl INTERFACE ${LIBCURL_LINK_LIBRARIES})
++    find_package(CURL REQUIRED)
++    if (CURL_FOUND AND NOT DOWNLOAD_LIBCURL)
++        add_library(TracyLibcurl ALIAS CURL::libcurl)
+     else()
+         CPMAddPackage(
+             NAME libcurl
+-- 
+2.43.0.windows.1
+
