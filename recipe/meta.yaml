@@ -11,14 +11,12 @@ source:
   url: https://github.com/wolfpld/{{ name }}/archive/refs/tags/v{{ version }}.zip
   sha256: bc5b8562c3dbac664d394f163695ce6bf9071d1f7bf436500f3e087f33e01ead
   patches:
-    # Avoid installation issue on Windows.
-    - patches/0001-Install-bindings-on-Windows-and-allow-__init__.py-to.patch
     # Avoid linking issue on MacOS
-    - patches/0002-Don-t-link-against-Python-library-in-Python-module.patch
+    - patches/0001-Don-t-link-against-Python-library-in-Python-module.patch
     # Avoid linking issues on Linux with conda packages
-    - patches/0003-Avoid-linking-issues-when-linking-against-conda-pack.patch
+    - patches/0002-Avoid-linking-issues-when-linking-against-conda-pack.patch
     # Don't retrieve git ref
-    - patches/0004-Don-t-retrieve-git-ref.patch
+    - patches/0003-Don-t-retrieve-git-ref.patch
 
 build:
   number: 0
@@ -57,6 +55,7 @@ outputs:
       host:
         - freetype
         # CMake doesn't find freetype without zlib
+        - libcurl
         - zlib
         - glfw
         - dbus          # [linux]
@@ -77,12 +76,13 @@ outputs:
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - cmake
         - ninja
+        - pkg-config
         - {{ compiler('cxx') }}
         - {{ stdlib("c") }}
       host:
         - python
-        - setuptools
         - pip
+        - scikit-build-core
         - {{ pin_subpackage(pkg_name ~ '-client', exact=true) }}
       run:
         - python
