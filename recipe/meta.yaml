@@ -84,6 +84,8 @@ outputs:
         - pkg-config
         - {{ compiler('cxx') }}
         - {{ stdlib("c") }}
+        # clang-scan-dep is needed to build cxx 20 module
+        - clang-tools  # [osx]
       host:
         - python
         - pip
