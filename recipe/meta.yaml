@@ -68,6 +68,7 @@ outputs:
       commands:
         - test -f $PREFIX/bin/tracy-profiler                           # [not win]
         - if not exist %PREFIX%\Library\bin\tracy-profiler.exe exit 1  # [win]
+        - tracy-profiler --help
   - name: {{ pkg_name }}-client-python
     script: build_tracy_client_python.sh   # [not win]
     script: build_tracy_client_python.bat  # [win]
