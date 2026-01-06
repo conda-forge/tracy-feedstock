@@ -2,7 +2,13 @@
 
 cd profiler
 
-# make embed in native mode when cross compiling
+# Tracy build a tool (embed) that is used to generate source files.
+# When cross building, embed is run by build architecture and must be build
+# for it.
+# The following code configure the compiler and compilation flags to build embed
+# in build architecture.
+# This code is heavily inspired from this one:
+# https://github.com/conda-forge/pyside2-feedstock/blob/37d071b008afab69ef6a221e31446c1f46a3a754/recipe/build.sh#L9-L34
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULATOR:-}" == "" ]]; then
 (
     cd helpers
