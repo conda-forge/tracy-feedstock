@@ -66,6 +66,7 @@ outputs:
         - dbus          # [linux]
         - libegl-devel  # [linux]
         - libcapstone   # [linux or osx]
+        - xorg-libx11   # [linux]
         - tbb-devel
       run:
     test:
