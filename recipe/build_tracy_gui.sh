@@ -2,6 +2,39 @@
 
 cd profiler
 
+# make embed in native mode when cross compiling
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULATOR:-}" == "" ]]; then
+(
+    cd helpers
+    rm -rf build
+    mkdir build && cd build
+
+    export CC=$CC_FOR_BUILD
+    export CXX=$CXX_FOR_BUILD
+    export LDFLAGS=${LDFLAGS//$PREFIX/$BUILD_PREFIX}
+    export CFLAGS=${CFLAGS//$PREFIX/$BUILD_PREFIX}
+    export CXXFLAGS=${CXXFLAGS//$PREFIX/$BUILD_PREFIX}
+
+    # hide host libs
+    mkdir -p $BUILD_PREFIX/${HOST}
+    mv $BUILD_PREFIX/${HOST} _hidden
+
+    cmake ${CMAKE_ARGS} .. \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=${BUILD_PREFIX}/bin \
+        -GNinja
+
+    # build
+    cmake --build . --parallel ${CPU_COUNT}
+
+    # install
+    cmake --build . --target install
+
+    mv _hidden $BUILD_PREFIX/${HOST}
+)
+fi
+
+
 rm -rf build
 
 mkdir build && cd build

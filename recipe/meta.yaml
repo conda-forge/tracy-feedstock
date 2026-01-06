@@ -20,7 +20,8 @@ source:
     # Avoid to use pkg-config as most as possible
     # Some .pc file are not available on Windows
     - patches/0004-Use-find_package-instead-of-package-config-to-.patch
-
+    # Use embed build from a native build when cross compiling
+    - patches/0005-Use-embed-installed-as-an-external-project.patch  # [build_platform != target_platform]
 build:
   number: 0
 
@@ -74,34 +75,34 @@ outputs:
         - test -f $PREFIX/bin/tracy-profiler                           # [not win]
         - if not exist %PREFIX%\Library\bin\tracy-profiler.exe exit 1  # [win]
         - tracy-profiler --help
-  - name: {{ pkg_name }}-client-python
-    script: build_tracy_client_python.sh  # [not win]
-    script: build_tracy_client_python.bat  # [win]
-    requirements:
-      build:
-        - python                                 # [build_platform != target_platform]
-        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-        - cmake
-        - ninja
-        - pkg-config
-        - {{ compiler('cxx') }}
-        - {{ stdlib("c") }}
-        # clang-scan-dep is needed to build cxx 20 module
-        - clang-tools  # [osx]
-      host:
-        - python
-        - pip
-        - scikit-build-core
-        - {{ pin_subpackage(pkg_name ~ '-client', exact=true) }}
-      run:
-        - python
-        - {{ pin_subpackage(pkg_name ~ '-client', exact=true) }}
-    test:
-      commands:
-        # TRACY_NO_INVARIANT_CHECK must be set on CI machine because the CPU
-        # doesn't support some instructions.
-        - TRACY_NO_INVARIANT_CHECK=1 python -c "import tracy_client"         # [not_win]
-        - set TRACY_NO_INVARIANT_CHECK=1 && python -c "import tracy_client"  # [win]
+  # - name: {{ pkg_name }}-client-python
+  #   script: build_tracy_client_python.sh  # [not win]
+  #   script: build_tracy_client_python.bat  # [win]
+  #   requirements:
+  #     build:
+  #       - python                                 # [build_platform != target_platform]
+  #       - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+  #       - cmake
+  #       - ninja
+  #       - pkg-config
+  #       - {{ compiler('cxx') }}
+  #       - {{ stdlib("c") }}
+  #       # clang-scan-dep is needed to build cxx 20 module
+  #       - clang-tools  # [osx]
+  #     host:
+  #       - python
+  #       - pip
+  #       - scikit-build-core
+  #       - {{ pin_subpackage(pkg_name ~ '-client', exact=true) }}
+  #     run:
+  #       - python
+  #       - {{ pin_subpackage(pkg_name ~ '-client', exact=true) }}
+  #   test:
+  #     commands:
+  #       # TRACY_NO_INVARIANT_CHECK must be set on CI machine because the CPU
+  #       # doesn't support some instructions.
+  #       - TRACY_NO_INVARIANT_CHECK=1 python -c "import tracy_client"         # [not_win]
+  #       - set TRACY_NO_INVARIANT_CHECK=1 && python -c "import tracy_client"  # [win]
   - name: {{ pkg_name }}
     requirements:
       host:
@@ -109,13 +110,13 @@ outputs:
         - python
       run:
         - {{ pin_subpackage(pkg_name ~ '-client', exact=true) }}
-        - {{ pin_subpackage(pkg_name ~ '-client-python', exact=true) }}
+        # - {{ pin_subpackage(pkg_name ~ '-client-python', exact=true) }}
     test:
       commands:
         - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}                     # [not win]
         - if not exist %PREFIX%\Library\bin\TracyClient.dll exit 1           # [win]
-        - TRACY_NO_INVARIANT_CHECK=1 python -c "import tracy_client"         # [not_win]
-        - set TRACY_NO_INVARIANT_CHECK=1 && python -c "import tracy_client"  # [win]
+        # - TRACY_NO_INVARIANT_CHECK=1 python -c "import tracy_client"         # [not_win]
+        # - set TRACY_NO_INVARIANT_CHECK=1 && python -c "import tracy_client"  # [win]
 
 about:
   home: https://github.com/wolfpld/tracy
