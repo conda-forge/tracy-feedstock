@@ -66,6 +66,7 @@ outputs:
         - libcapstone   # [linux or osx]
         - xorg-libx11   # [linux]
         - tbb-devel
+        - pugixml
       run:
     test:
       commands:
@@ -94,6 +95,7 @@ outputs:
         - libcapstone   # [linux or osx]
         - xorg-libx11   # [linux]
         - tbb-devel
+        - pugixml
       run:
     test:
       commands:

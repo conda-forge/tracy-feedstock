@@ -11,7 +11,6 @@ fi
 
 cmake ${CMAKE_ARGS} .. \
     -DCMAKE_BUILD_TYPE=Release \
-    -DLEGACY=TRUE \
     -DNO_ISA_EXTENSIONS=ON \
     -DDOWNLOAD_CAPSTONE=FALSE \
     -GNinja
