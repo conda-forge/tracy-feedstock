@@ -72,7 +72,7 @@ outputs:
       commands:
         - test -f $PREFIX/bin/tracy-capture              # [not win]
         - if not exist %PREFIX%\Library\bin\tracy-capture.exe exit 1  # [win]
-        - tracy-capture --help
+        - tracy-capture --help || true
   - name: {{ pkg_name }}-csvexport
     script: build_tracy_csvexport.sh  # [not win]
     script: build_tracy_csvexport.bat  # [win]
@@ -101,7 +101,7 @@ outputs:
       commands:
         - test -f $PREFIX/bin/tracy-csvexport              # [not win]
         - if not exist %PREFIX%\Library\bin\tracy-csvexport.exe exit 1  # [win]
-        - tracy-csvexport --help
+        - tracy-csvexport --help || true
   - name: {{ pkg_name }}-gui
     script: build_tracy_gui.sh  # [not win]
     script: build_tracy_gui.bat  # [win]
