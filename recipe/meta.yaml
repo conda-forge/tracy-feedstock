@@ -44,6 +44,48 @@ outputs:
       commands:
         - test -f $PREFIX/lib/libTracyClient${SHLIB_EXT}            # [not win]
         - if not exist %PREFIX%\Library\bin\TracyClient.dll exit 1  # [win]
+  - name: {{ pkg_name }}-capture
+    script: build_tracy_capture.sh  # [not win]
+    script: build_tracy_capture.bat  # [win]
+    build:
+      skip: true  # [ppc64le or aarch64]
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - pkg-config
+        - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
+      host:
+        - libcapstone   # [linux or osx]
+        - tbb-devel
+      run:
+    test:
+      commands:
+        - test -f $PREFIX/bin/tracy-capture              # [not win]
+        - if not exist %PREFIX%\Library\bin\tracy-capture.exe exit 1  # [win]
+        - tracy-capture --help
+  - name: {{ pkg_name }}-csvexport
+    script: build_tracy_csvexport.sh  # [not win]
+    script: build_tracy_csvexport.bat  # [win]
+    build:
+      skip: true  # [ppc64le or aarch64]
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - pkg-config
+        - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
+      host:
+        - libcapstone   # [linux or osx]
+        - tbb-devel
+      run:
+    test:
+      commands:
+        - test -f $PREFIX/bin/tracy-csvexport              # [not win]
+        - if not exist %PREFIX%\Library\bin\tracy-csvexport.exe exit 1  # [win]
+        - tracy-csvexport --help
   - name: {{ pkg_name }}-gui
     script: build_tracy_gui.sh  # [not win]
     script: build_tracy_gui.bat  # [win]
