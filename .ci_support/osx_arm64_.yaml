@@ -33,6 +33,6 @@ python:
 target_platform:
 - osx-arm64
 tbb_devel:
-- '2022'
+- '2023'
 zlib:
 - '1'
