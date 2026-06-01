@@ -1,11 +1,11 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.13'
+- '11.0'
 MACOSX_SDK_VERSION:
 - '15.5'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
-- '10.13'
+- '11.0'
 channel_sources:
 - conda-forge/label/capstone_dev,conda-forge
 channel_targets:
@@ -33,6 +33,6 @@ python:
 target_platform:
 - osx-64
 tbb_devel:
-- '2022'
+- '2023'
 zlib:
 - '1'

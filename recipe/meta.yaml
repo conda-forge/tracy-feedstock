@@ -23,7 +23,7 @@ source:
     # Use embed build in native mode and installed in path
     - patches/0005-Use-embed-installed-as-an-external-project.patch  # [build_platform != target_platform]
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: {{ pkg_name }}-client
