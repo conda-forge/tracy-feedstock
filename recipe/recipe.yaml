@@ -25,6 +25,13 @@ source:
     # Use embed build in native mode and installed in path
     - if: build_platform != target_platform
       then: patches/0005-Use-embed-installed-as-an-external-project.patch
+    # Disable link-time optimization (LTO) in the GUI/capture build: it increases
+    # linking time by several minutes without a noticeable runtime speedup
+    - patches/0006-Disable-LTO-in-the-GUI-and-capture-builds.patch
+    # Don't prompt about achievements in the GUI
+    - patches/0007-Don-t-prompt-about-achievements.patch
+    # Hide ghost zones by default in the GUI to reduce clutter
+    - patches/0008-Hide-ghost-zones-by-default.patch
 
 build:
   number: ${{ build_number }}
@@ -102,6 +109,92 @@ outputs:
             - tracy-profiler
       - script:
           - tracy-profiler --help
+  # ======================
+  # tracy-profiler-capture
+  # ======================
+  - package:
+      name: tracy-profiler-capture
+    build:
+      skip: ppc64le or aarch64
+      script:
+        file: build_tracy_capture
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - pkg-config
+        - ${{ stdlib('c') }}
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        # clang-scan-dep is needed to build cxx 20 module from pugixml
+        - if: osx
+          then: clang-tools
+      host:
+        # cmake/vendor.cmake is included at configure time and requires the
+        # full GUI dependency set (find_package REQUIRED) even though the CLI
+        # tool only links against TracyServer + TracyGetOpt.
+        # pugixml is added to avoid a CPM download and C++20 module scanning.
+        - freetype
+        - libcurl
+        - zlib
+        - glfw
+        - if: linux
+          then:
+            - dbus
+            - libegl-devel
+            - xorg-libx11
+        - if: linux or osx
+          then: libcapstone
+        - tbb-devel
+        - pugixml
+      run:
+    tests:
+      - package_contents:
+          bin:
+            - tracy-capture
+  # ========================
+  # tracy-profiler-csvexport
+  # ========================
+  - package:
+      name: tracy-profiler-csvexport
+    build:
+      skip: ppc64le or aarch64
+      script:
+        file: build_tracy_csvexport
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - pkg-config
+        - ${{ stdlib('c') }}
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        # clang-scan-dep is needed to build cxx 20 module from pugixml
+        - if: osx
+          then: clang-tools
+      host:
+        # cmake/vendor.cmake is included at configure time and requires the
+        # full GUI dependency set (find_package REQUIRED) even though the CLI
+        # tool only links against TracyServer + TracyGetOpt.
+        # pugixml is added to avoid a CPM download and C++20 module scanning.
+        - freetype
+        - libcurl
+        - zlib
+        - glfw
+        - if: linux
+          then:
+            - dbus
+            - libegl-devel
+            - xorg-libx11
+        - if: linux or osx
+          then: libcapstone
+        - tbb-devel
+        - pugixml
+      run:
+    tests:
+      - package_contents:
+          bin:
+            - tracy-csvexport
   # ============================
   # tracy-profiler-client-python
   # ============================

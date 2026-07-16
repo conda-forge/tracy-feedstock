@@ -1,0 +1,17 @@
+Subject: [PATCH] Don't prompt about achievements
+
+Mark the achievements prompt as already asked so the GUI does not prompt the
+user about achievements on first start.
+
+diff --git a/profiler/src/profiler/TracyConfig.hpp b/profiler/src/profiler/TracyConfig.hpp
+--- a/profiler/src/profiler/TracyConfig.hpp
++++ b/profiler/src/profiler/TracyConfig.hpp
+@@ -19,7 +19,7 @@ struct Config
+     bool memoryLimit = false;
+     int memoryLimitPercent = 80;
+     bool achievements = false;
+-    bool achievementsAsked = false;
++    bool achievementsAsked = true;
+     int dynamicColors = 1;
+     bool forceColors = false;
+     bool ghostZones = true;
