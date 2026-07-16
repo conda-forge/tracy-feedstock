@@ -5,11 +5,10 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tracy-feedstock
 
 Home: https://github.com/wolfpld/tracy
 
-Package license: [BSD-3-Clause](https://github.com/wolfpld/tracy/blob/master/LICENSE)
+Package license: BSD-3-Clause
 
 Summary: A real time, nanosecond resolution, remote telemetry, hybrid frame and
 sampling profiler for games and other applications.
-
 
 Development: https://github.com/wolfpld/tracy
 
