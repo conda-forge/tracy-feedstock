@@ -140,10 +140,10 @@ outputs:
       - python:
           pip_check: true
       - script:
-          - if: not win
-            then: TRACY_NO_INVARIANT_CHECK=1 python -c "import tracy_client"
           - if: win
-            then: set TRACY_NO_INVARIANT_CHECK=1 && python -c "import tracy_client"
+            then: set TRACY_NO_INVARIANT_CHECK=1
+            else: export TRACY_NO_INVARIANT_CHECK=1
+          - python -c "import tracy_client"
   # ==============
   # tracy-profiler
   # ==============
@@ -156,12 +156,6 @@ outputs:
       run:
         - ${{ pin_subpackage('tracy-profiler-client', exact=true) }}
         - ${{ pin_subpackage('tracy-profiler-client-python', exact=true) }}
-    tests:
-      - script:
-          - if: win
-            then: set TRACY_NO_INVARIANT_CHECK=1
-            else: export TRACY_NO_INVARIANT_CHECK=1
-          - python -c "import tracy_client"
 
 about:
   summary: |
