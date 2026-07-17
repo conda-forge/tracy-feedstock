@@ -25,9 +25,6 @@ source:
     # Use embed build in native mode and installed in path
     - if: build_platform != target_platform
       then: patches/0005-Use-embed-installed-as-an-external-project.patch
-    # Disable link-time optimization (LTO) in the GUI/capture build: it increases
-    # linking time by several minutes without a noticeable runtime speedup
-    - patches/0006-Disable-LTO-in-the-GUI-and-capture-builds.patch
     # Don't prompt about achievements in the GUI
     - patches/0007-Don-t-prompt-about-achievements.patch
     # Hide ghost zones by default in the GUI to reduce clutter
