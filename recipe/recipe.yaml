@@ -241,7 +241,7 @@ outputs:
       name: tracy-profiler
     requirements:
       host:
-        # Explicitely add a python requirement to change hash between python version
+        # Explicitly add a python requirement to change hash between python version
         - python
       run:
         - ${{ pin_subpackage('tracy-profiler-client', exact=true) }}
