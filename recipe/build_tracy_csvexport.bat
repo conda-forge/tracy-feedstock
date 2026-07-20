@@ -7,6 +7,7 @@ cd build
 
 cmake .. ^
     -DCMAKE_BUILD_TYPE=Release ^
+    -DDOWNLOAD_CAPSTONE=FALSE ^
     -DNO_ISA_EXTENSIONS=ON ^
     -GNinja ^
     -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
