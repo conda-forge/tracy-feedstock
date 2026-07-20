@@ -71,8 +71,10 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler-green.svg)](https://anaconda.org/conda-forge/tracy-profiler) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler.svg)](https://anaconda.org/conda-forge/tracy-profiler) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler.svg)](https://anaconda.org/conda-forge/tracy-profiler) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler.svg)](https://anaconda.org/conda-forge/tracy-profiler) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--capture-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-capture) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-capture.svg)](https://anaconda.org/conda-forge/tracy-profiler-capture) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-capture.svg)](https://anaconda.org/conda-forge/tracy-profiler-capture) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-capture.svg)](https://anaconda.org/conda-forge/tracy-profiler-capture) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--client-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-client.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-client.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-client.svg)](https://anaconda.org/conda-forge/tracy-profiler-client) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--client--python-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-client-python.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-client-python.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-client-python.svg)](https://anaconda.org/conda-forge/tracy-profiler-client-python) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--csvexport-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-csvexport) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-csvexport.svg)](https://anaconda.org/conda-forge/tracy-profiler-csvexport) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-csvexport.svg)](https://anaconda.org/conda-forge/tracy-profiler-csvexport) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-csvexport.svg)](https://anaconda.org/conda-forge/tracy-profiler-csvexport) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-tracy--profiler--gui-green.svg)](https://anaconda.org/conda-forge/tracy-profiler-gui) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/tracy-profiler-gui.svg)](https://anaconda.org/conda-forge/tracy-profiler-gui) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/tracy-profiler-gui.svg)](https://anaconda.org/conda-forge/tracy-profiler-gui) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/tracy-profiler-gui.svg)](https://anaconda.org/conda-forge/tracy-profiler-gui) |
 
 Installing tracy-profiler
@@ -85,16 +87,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `tracy-profiler, tracy-profiler-client, tracy-profiler-client-python, tracy-profiler-gui` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `tracy-profiler, tracy-profiler-capture, tracy-profiler-client, tracy-profiler-client-python, tracy-profiler-csvexport, tracy-profiler-gui` can be installed with `conda`:
 
 ```
-conda install tracy-profiler tracy-profiler-client tracy-profiler-client-python tracy-profiler-gui
+conda install tracy-profiler tracy-profiler-capture tracy-profiler-client tracy-profiler-client-python tracy-profiler-csvexport tracy-profiler-gui
 ```
 
 or with `mamba`:
 
 ```
-mamba install tracy-profiler tracy-profiler-client tracy-profiler-client-python tracy-profiler-gui
+mamba install tracy-profiler tracy-profiler-capture tracy-profiler-client tracy-profiler-client-python tracy-profiler-csvexport tracy-profiler-gui
 ```
 
 It is possible to list all of the versions of `tracy-profiler` available on your platform with `conda`:
