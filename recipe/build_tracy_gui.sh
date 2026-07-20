@@ -31,7 +31,7 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" == 1 && "${CMAKE_CROSSCOMPILING_EMULA
         -GNinja
 
     # build
-    cmake --build . --parallel ${CPU_COUNT}
+    cmake --build .
 
     # install
     cmake --build . --target install
@@ -61,8 +61,7 @@ cmake ${CMAKE_ARGS} ${CMAKE_CUSTOM_ARGS} .. \
     -GNinja
 
 # build
-cmake --build . --parallel ${CPU_COUNT}
+cmake --build .
 
 # install
 cmake --build . --target install
-

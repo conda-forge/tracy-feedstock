@@ -13,7 +13,7 @@ cmake .. ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%"
 
 :: build
-cmake --build . --parallel %CPU_COUNT%
+cmake --build .
 
 :: install
 cmake --build . --target install

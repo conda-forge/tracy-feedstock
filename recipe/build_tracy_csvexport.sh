@@ -18,7 +18,7 @@ cmake ${CMAKE_ARGS} .. \
     -GNinja
 
 # build
-cmake --build . --parallel ${CPU_COUNT}
+cmake --build .
 
 # install
 cmake --build . --target install

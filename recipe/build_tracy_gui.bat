@@ -13,7 +13,7 @@ cmake .. ^
     -DDOWNLOAD_LIBCURL=TRUE
 
 :: build
-cmake --build . --parallel %CPU_COUNT%
+cmake --build .
 
 :: install
 cmake --build . --target install
