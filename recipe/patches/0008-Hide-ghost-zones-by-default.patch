@@ -1,0 +1,16 @@
+Subject: [PATCH] Hide ghost zones by default
+
+Set Ghost Zones to be hidden by default to reduce clutter when profiling.
+
+diff --git a/profiler/src/profiler/TracyViewData.hpp b/profiler/src/profiler/TracyViewData.hpp
+--- a/profiler/src/profiler/TracyViewData.hpp
++++ b/profiler/src/profiler/TracyViewData.hpp
+@@ -55,7 +55,7 @@ struct ViewData
+     uint8_t dynamicColors = 1;
+     uint8_t inheritParentColors = true;
+     uint8_t forceColors = false;
+-    uint8_t ghostZones = true;
++    uint8_t ghostZones = false;
+     ShortenName shortenName = ShortenName::NoSpaceAndNormalize;
+ 
+     uint32_t frameTarget = 60;

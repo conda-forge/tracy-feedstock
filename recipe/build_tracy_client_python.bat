@@ -1,4 +1,6 @@
 rm -rf build
 cd python
 
+set SKBUILD_CMAKE_DEFINE=TRACY_DELAYED_INIT=ON;CMAKE_POSITION_INDEPENDENT_CODE=ON
+
 %PYTHON% -m pip install --no-deps --no-build-isolation -vv .
