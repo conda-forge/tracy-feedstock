@@ -5,11 +5,10 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/tracy-feedstock
 
 Home: https://github.com/wolfpld/tracy
 
-Package license: [BSD-3-Clause](https://github.com/wolfpld/tracy/blob/master/LICENSE)
+Package license: BSD-3-Clause
 
 Summary: A real time, nanosecond resolution, remote telemetry, hybrid frame and
 sampling profiler for games and other applications.
-
 
 Development: https://github.com/wolfpld/tracy
 
@@ -42,6 +41,13 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23405&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tracy-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=23405&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/tracy-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
                 </a>
               </td>
             </tr><tr>

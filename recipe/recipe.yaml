@@ -1,0 +1,174 @@
+schema_version: 1
+
+context:
+  name: tracy
+  build_number: 2
+  version: "0.13.1"
+
+recipe:
+  name: tracy-profiler-split
+  version: ${{ version }}
+
+source:
+  url: https://github.com/wolfpld/${{ name }}/archive/refs/tags/v${{ version }}.zip
+  sha256: a1ecc73b0547512d4bab71278a14581763940118baef835a8033a675f3c8e06d
+  patches:
+    # Avoid linking issue on MacOS
+    - patches/0001-Don-t-link-against-Python-library-in-Python-module.patch
+    # Avoid linking issues on Linux with conda packages
+    - patches/0002-Avoid-linking-issues-when-linking-against-conda-pack.patch
+    # Don't retrieve git ref
+    - patches/0003-Don-t-retrieve-git-ref.patch
+    # Avoid to use pkg-config as most as possible
+    # Some .pc file are not available on Windows
+    - patches/0004-Use-find_package-instead-of-package-config-to-.patch
+    # Use embed build in native mode and installed in path
+    - if: build_platform != target_platform
+      then: patches/0005-Use-embed-installed-as-an-external-project.patch
+
+build:
+  number: ${{ build_number }}
+
+outputs:
+  # =====================
+  # tracy-profiler-client
+  # =====================
+  - package:
+      name: tracy-profiler-client
+    build:
+      script:
+        file: build_tracy_client
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - ${{ stdlib('c') }}
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+      host:
+      run:
+      run_exports:
+        - ${{ pin_subpackage('tracy-profiler-client', upper_bound='x.x.x') }}
+    tests:
+      - package_contents:
+          include:
+            - tracy/tracy/Tracy.hpp
+          lib:
+            - TracyClient
+      - script:
+          - cmake-package-check Tracy --targets TracyClient
+        requirements:
+          run:
+            - ${{ compiler('cxx') }}
+            - cmake-package-check
+  # ==================
+  # tracy-profiler-gui
+  # ==================
+  - package:
+      name: tracy-profiler-gui
+    build:
+      skip: ppc64le or aarch64
+      script:
+        file: build_tracy_gui
+    requirements:
+      build:
+        - cmake
+        - ninja
+        - pkg-config
+        - ${{ stdlib('c') }}
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        # clang-scan-dep is needed to build cxx 20 module from plugixml
+        - if: osx
+          then: clang-tools
+      host:
+        - freetype
+        # CMake doesn't find freetype without zlib
+        - libcurl
+        - zlib
+        - glfw
+        - if: linux
+          then:
+            - dbus
+            - libegl-devel
+            - xorg-libx11
+        - if: linux or osx
+          then: libcapstone
+        - tbb-devel
+      run:
+    tests:
+      - package_contents:
+          bin:
+            - tracy-profiler
+      - script:
+          - tracy-profiler --help
+  # ============================
+  # tracy-profiler-client-python
+  # ============================
+  - package:
+      name: tracy-profiler-client-python
+    build:
+      script:
+        file: build_tracy_client_python
+    requirements:
+      build:
+        - if: build_platform != target_platform
+          then:
+            - python
+            - cross-python_${{ target_platform }}
+        - cmake
+        - ninja
+        - pkg-config
+        - ${{ stdlib('c') }}
+        - ${{ compiler('c') }}
+        - ${{ compiler('cxx') }}
+        # clang-scan-dep is needed to build cxx 20 module
+        - if: osx
+          then: clang-tools
+      host:
+        - python
+        - pip
+        - scikit-build-core
+        - ${{ pin_subpackage('tracy-profiler-client', exact=true) }}
+      run:
+        - python
+        - ${{ pin_subpackage('tracy-profiler-client', exact=true) }}
+    tests:
+      - package_contents:
+          site_packages:
+            - tracy_client
+      - python:
+          pip_check: true
+      - script:
+          - if: win
+            then: set TRACY_NO_INVARIANT_CHECK=1
+            else: export TRACY_NO_INVARIANT_CHECK=1
+          - python -c "import tracy_client"
+  # ==============
+  # tracy-profiler
+  # ==============
+  - package:
+      name: tracy-profiler
+    requirements:
+      host:
+        # Explicitely add a python requirement to change hash between python version
+        - python
+      run:
+        - ${{ pin_subpackage('tracy-profiler-client', exact=true) }}
+        - ${{ pin_subpackage('tracy-profiler-client-python', exact=true) }}
+
+about:
+  summary: |
+    A real time, nanosecond resolution, remote telemetry, hybrid frame and
+    sampling profiler for games and other applications.
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/wolfpld/tracy
+  repository: https://github.com/wolfpld/tracy
+
+extra:
+  feedstock-name: tracy-profiler
+  recipe-maintainers:
+    - ManifoldFR
+    - jorisv
+    - jcarpent
