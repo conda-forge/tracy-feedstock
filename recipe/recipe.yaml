@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: tracy
-  build_number: 3
+  build_number: 4
   version: "0.13.1"
 
 recipe:
@@ -71,7 +71,7 @@ outputs:
   - package:
       name: tracy-profiler-gui
     build:
-      skip: ppc64le or aarch64
+      skip: ppc64le
       script:
         file: build_tracy_gui
     requirements:
@@ -112,7 +112,7 @@ outputs:
   - package:
       name: tracy-profiler-capture
     build:
-      skip: ppc64le or aarch64
+      skip: ppc64le
       script:
         file: build_tracy_capture
     requirements:
@@ -155,7 +155,7 @@ outputs:
   - package:
       name: tracy-profiler-csvexport
     build:
-      skip: ppc64le or aarch64
+      skip: ppc64le
       script:
         file: build_tracy_csvexport
     requirements:
