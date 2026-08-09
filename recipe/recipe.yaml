@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   name: tracy
-  build_number: 3
-  version: "0.13.1"
+  build_number: 0
+  version: "0.14.0"
 
 recipe:
   name: tracy-profiler-split
@@ -11,7 +11,7 @@ recipe:
 
 source:
   url: https://github.com/wolfpld/${{ name }}/archive/refs/tags/v${{ version }}.zip
-  sha256: a1ecc73b0547512d4bab71278a14581763940118baef835a8033a675f3c8e06d
+  sha256: 29ab986038b62acc18845e6628e3690b49c84ea7ed648e9cc476f355ff61e3c3
   patches:
     # Avoid linking issue on MacOS
     - patches/0001-Don-t-link-against-Python-library-in-Python-module.patch
