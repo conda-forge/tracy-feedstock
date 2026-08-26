@@ -1,6 +1,6 @@
-From b04959ce827d527c4bfeb29a17820584342bef5a Mon Sep 17 00:00:00 2001
+From 876967db0b89f4f7aaabfe23b2490d5766fcb277 Mon Sep 17 00:00:00 2001
 From: Joris Vaillant <joris.vaillant@inria.fr>
-Date: Tue, 6 Jan 2026 17:04:43 +0100
+Date: Wed, 26 Aug 2026 16:29:35 +0200
 Subject: [PATCH] Use embed installed as an external project
 
 ---
@@ -8,12 +8,12 @@ Subject: [PATCH] Use embed installed as an external project
  1 file changed, 2 insertions(+), 10 deletions(-)
 
 diff --git a/profiler/CMakeLists.txt b/profiler/CMakeLists.txt
-index 1681a64b..9d2f190d 100644
+index 5747b130..e5cb306c 100644
 --- a/profiler/CMakeLists.txt
 +++ b/profiler/CMakeLists.txt
-@@ -32,14 +32,6 @@ include(${CMAKE_CURRENT_LIST_DIR}/../cmake/config.cmake)
- include(${CMAKE_CURRENT_LIST_DIR}/../cmake/vendor.cmake)
+@@ -40,14 +40,6 @@ include(${CMAKE_CURRENT_LIST_DIR}/../cmake/vendor.cmake)
  include(${CMAKE_CURRENT_LIST_DIR}/../cmake/server.cmake)
+ include(${CMAKE_CURRENT_LIST_DIR}/../cmake/GitRef.cmake)
  
 -include(ExternalProject)
 -ExternalProject_Add(embed
@@ -23,17 +23,17 @@ index 1681a64b..9d2f190d 100644
 -        -DCMAKE_INSTALL_PREFIX=${CMAKE_CURRENT_BINARY_DIR}
 -)
 -
- add_custom_command(
-     OUTPUT data
-     COMMAND ${CMAKE_COMMAND} -E make_directory data
-@@ -48,8 +40,8 @@ add_custom_command(
  function(Embed LIST NAME FILE)
+     cmake_parse_arguments(EMBED "TEXT" "" "" ${ARGN})
+     if(EMBED_TEXT)
+@@ -58,8 +50,8 @@ function(Embed LIST NAME FILE)
      add_custom_command(
          OUTPUT data/${NAME}.cpp data/${NAME}.hpp
--        COMMAND ${CMAKE_CURRENT_BINARY_DIR}/embed ${NAME} ${CMAKE_CURRENT_LIST_DIR}/${FILE} data/${NAME}
--        DEPENDS data embed ${CMAKE_CURRENT_LIST_DIR}/${FILE}
-+        COMMAND embed ${NAME} ${CMAKE_CURRENT_LIST_DIR}/${FILE} data/${NAME}
-+        DEPENDS data ${CMAKE_CURRENT_LIST_DIR}/${FILE}
+         COMMAND ${CMAKE_COMMAND} -E make_directory data
+-        COMMAND ${CMAKE_CURRENT_BINARY_DIR}/embed ${EMBED_FLAGS} ${NAME} ${CMAKE_CURRENT_LIST_DIR}/${FILE} data/${NAME}
+-        DEPENDS embed ${CMAKE_CURRENT_LIST_DIR}/${FILE}
++        COMMAND embed ${EMBED_FLAGS} ${NAME} ${CMAKE_CURRENT_LIST_DIR}/${FILE} data/${NAME}
++        DEPENDS ${CMAKE_CURRENT_LIST_DIR}/${FILE}
      )
      list(APPEND ${LIST} data/${NAME}.cpp)
      return(PROPAGATE ${LIST})
