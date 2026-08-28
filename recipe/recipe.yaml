@@ -28,7 +28,6 @@ source:
     # Hide ghost zones by default in the GUI to reduce clutter
     - patches/0008-Hide-ghost-zones-by-default.patch
     # Avoid zstd install issue when building python binding
-    # 
     - patches/0009-Fix-python-binding-build.patch
 
 build:
