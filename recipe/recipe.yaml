@@ -17,6 +17,8 @@ source:
     - patches/0001-Don-t-link-against-Python-library-in-Python-module.patch
     # Avoid linking issues on Linux with conda packages
     - patches/0002-Avoid-linking-issues-when-linking-against-conda-pack.patch
+    # Fix GitRef.hpp generation on Windows (https://github.com/wolfpld/tracy/pull/1464)
+    - patches/0003-Fix-GitRef.hpp-generation-on-Windows.patch
     # Avoid to use pkg-config as most as possible
     # Some .pc file are not available on Windows
     - patches/0004-Use-find_package-instead-of-package-config-to-.patch
