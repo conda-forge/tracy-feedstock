@@ -2,8 +2,8 @@ schema_version: 1
 
 context:
   name: tracy
-  build_number: 3
-  version: "0.13.1"
+  build_number: 0
+  version: "0.14.1"
 
 recipe:
   name: tracy-profiler-split
@@ -11,14 +11,14 @@ recipe:
 
 source:
   url: https://github.com/wolfpld/${{ name }}/archive/refs/tags/v${{ version }}.zip
-  sha256: a1ecc73b0547512d4bab71278a14581763940118baef835a8033a675f3c8e06d
+  sha256: 908f3a2917fa86a247abfcf85dcf04bad1db6986a4d40f94b70512f3e9e98d5b
   patches:
     # Avoid linking issue on MacOS
     - patches/0001-Don-t-link-against-Python-library-in-Python-module.patch
     # Avoid linking issues on Linux with conda packages
     - patches/0002-Avoid-linking-issues-when-linking-against-conda-pack.patch
-    # Don't retrieve git ref
-    - patches/0003-Don-t-retrieve-git-ref.patch
+    # Fix GitRef.hpp generation on Windows (https://github.com/wolfpld/tracy/pull/1464)
+    - patches/0003-Fix-GitRef.hpp-generation-on-Windows.patch
     # Avoid to use pkg-config as most as possible
     # Some .pc file are not available on Windows
     - patches/0004-Use-find_package-instead-of-package-config-to-.patch
@@ -29,6 +29,8 @@ source:
     - patches/0007-Don-t-prompt-about-achievements.patch
     # Hide ghost zones by default in the GUI to reduce clutter
     - patches/0008-Hide-ghost-zones-by-default.patch
+    # Avoid zstd install issue when building python binding
+    - patches/0009-Fix-python-binding-build.patch
 
 build:
   number: ${{ build_number }}

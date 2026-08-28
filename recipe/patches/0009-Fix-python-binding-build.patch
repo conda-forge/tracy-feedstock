@@ -1,0 +1,39 @@
+From 6b033596af4ae5982350885055a84b502d1d9758 Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Tue, 25 Aug 2026 14:58:00 +0200
+Subject: [PATCH] Fix python binding build - Fix vendor.cmake zstd build -
+ Configure C compiler
+
+---
+ CMakeLists.txt        | 2 +-
+ python/pyproject.toml | 1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 073fb6f2..6b846e9d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.13)
+ # Run version helper script
+ include(cmake/version.cmake)
+ 
+-project(Tracy LANGUAGES CXX VERSION ${TRACY_VERSION_STRING})
++project(Tracy LANGUAGES C CXX VERSION ${TRACY_VERSION_STRING})
+ 
+ file(GENERATE OUTPUT .gitignore CONTENT "*")
+ 
+diff --git a/python/pyproject.toml b/python/pyproject.toml
+index 0522ea48..96628ae5 100644
+--- a/python/pyproject.toml
++++ b/python/pyproject.toml
+@@ -27,7 +27,6 @@ wheel.packages = ["tracy_client"]
+ [tool.scikit-build.cmake.define]
+ TRACY_CLIENT_PYTHON = "ON"
+ TRACY_STATIC = "OFF"
+-CMAKE_INSTALL_BINDIR = ""
+ 
+ [tool.scikit-build.metadata.version]
+ provider = "scikit_build_core.metadata.regex"
+-- 
+2.52.0
+

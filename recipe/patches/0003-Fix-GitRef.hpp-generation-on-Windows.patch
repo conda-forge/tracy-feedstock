@@ -1,0 +1,25 @@
+From ba228a8e2e71d9c7eaa62126938251bd5b92fb48 Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Fri, 28 Aug 2026 10:48:29 +0200
+Subject: [PATCH] Fix GitRef.hpp generation on Windows
+
+---
+ cmake/GitRef.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/GitRef.cmake b/cmake/GitRef.cmake
+index cbb91102..661dfaed 100644
+--- a/cmake/GitRef.cmake
++++ b/cmake/GitRef.cmake
+@@ -11,7 +11,7 @@ function(add_git_ref target)
+         if(Git_FOUND)
+             add_custom_target(git-ref
+                 COMMAND ${CMAKE_COMMAND} -E echo "#pragma once" > GitRef.hpp.tmp
+-                COMMAND ${GIT_EXECUTABLE} -C ${CMAKE_CURRENT_SOURCE_DIR} log -1 "--format=namespace tracy { static inline const char* GitRef = %x22%h%x22; }" ${GIT_REV} >> GitRef.hpp.tmp || echo "namespace tracy { static inline const char* GitRef = \"unknown\"; }" >> GitRef.hpp.tmp
++                COMMAND ${GIT_EXECUTABLE} -C ${CMAKE_CURRENT_SOURCE_DIR} log -1 "--format=namespace tracy { static inline const char* GitRef = %x22%h%x22; }" ${GIT_REV} >> GitRef.hpp.tmp || ${CMAKE_COMMAND} -E echo "namespace tracy { static inline const char* GitRef = \"unknown\"; }" >> GitRef.hpp.tmp
+                 COMMAND ${CMAKE_COMMAND} -E copy_if_different GitRef.hpp.tmp GitRef.hpp
+                 BYPRODUCTS GitRef.hpp GitRef.hpp.tmp
+                 VERBATIM
+-- 
+2.55.0
+
