@@ -12,6 +12,9 @@ c_stdlib_version:
 - '11.0'
 channel_sources:
 - conda-forge/label/capstone_dev,conda-forge
+- conda-forge/label/capstone_dev,conda-forge
+- conda-forge/label/capstone_dev,conda-forge
+- conda-forge/label/capstone_dev,conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
@@ -31,7 +34,6 @@ pin_run_as_build:
 pugixml:
 - '1.15'
 python:
-- 3.10.* *_cpython
 - 3.11.* *_cpython
 - 3.12.* *_cpython
 - 3.13.* *_cp313
@@ -43,5 +45,7 @@ tbb_devel:
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
+- - python
+  - channel_sources
 zlib:
 - '1'
